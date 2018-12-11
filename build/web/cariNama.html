@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" id="home">
+
+    <head>
+
+        <title>Clara Santa Angkamor</title>
+
+    </head>
+
+    <body>
+        <div class="preloader">
+
+        </div>
+
+        <!--page locations-->
+        <section id="cariPasien" class="section gray-bg">
+            <div class="container">
+                <div class="row title text-center">
+
+                </div>            
+                <div class="contact-form">
+                    <center><table>
+                            <tr><td>Nama</td> <td>:</td> <td><input type="text" onchange="loadDoc()" id="nama"/> <button type="button" onclick="loadDoc()" id="btn">Cari</button></td></tr>
+                        </table></center>
+
+                    <br/><br/><br/><center><h3>Data Hasil Pencarian</h3></center><br/>
+                    <center><table>
+                           
+                            <script>
+
+                                xmlhttp.onreadystatechange = function () {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                        myFunction(this.responseText);
+                                    }
+                                }
+                                xmlhttp.open("GET", url, true);
+                                xmlhttp.send();
+                                function myFunction(response) {
+                                    var arr = JSON.parse(response);
+                                    var i;
+                                    var out = "<center><table align='center' style='width: 60%;' border='1'> <tr><td>Nama</td><td>NIK</td><td>Alamat</td><td>Tanggal Lahir</td><td>Jenis Kelamin</td></tr></center>";
+                                    for (i = 0; i < arr.length; i++) {
+                                        out += "<tr><td>" +
+                                                arr[i].nama +
+                                                "</td><td>" +
+                                                arr[i].nik +
+                                                "</td><td>" +
+                                                arr[i].alamat
+                                        "</td><td>" +
+                                                arr[i].tanggalLahir
+                                        "</td><td>" +
+                                                arr[i].kelamin;
+                                    }
+                                    out += "</table>";
+                                    document.getElementById("id01").innerHTML = out;
+
+
+                                }
+                            </script>
+                        </table></center>
+                </div>
+        </section> 
+
+
+        <footer>
+        </footer>
+
+
+    </body>
+</html>
