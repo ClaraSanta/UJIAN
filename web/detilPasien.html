@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" id="home">
+
+    <head>
+        
+        <title>Clara Santa Angkamor</title>
+        
+    </head>
+
+    <body>
+        <div class="preloader">
+           
+        </div>
+        
+        <!--page locations-->
+        <section id="cariPasien" class="section gray-bg">
+            <div class="container">
+                <div class="row title text-center">
+                   
+                </div>            
+                <div class="contact-form">
+                    <center><table>
+                            <tr><td>NIK</td> <td>:</td> <td><input type="text" onchange="loadDoc()" id="nik"/> <button type="button" onclick="loadDoc()" id="btn">Detail</button></td></tr>
+                        </table></center>
+
+                    <br/><br/><br/><center><h3>Data Hasil Pencarian</h3></center><br/>
+                    <center><table>
+                            <tr><td>NIK</td> <td>:</td> <td><input type="text" id="nik" value="" disabled=""/></td>
+                            <tr><td>Nama</td> <td>:</td> <td><input type="text" id="nama" value="" disabled=""/></td>
+                            <tr><td>Tanggal Lahir</td> <td>:</td> <td><input type="text" id="tanggalLahir" value="" disabled=""/></td></tr>
+                            <tr><td>Jenis Kelamin</td> <td>:</td><td><input type="text" id="kelamin" value="" disabled=""/></td><tr>
+                            <tr><td>Alamat</td> <td>:</td> <td><input type="text" id="alamat" value="" disabled=""/></td></tr>                            
+
+                        </table></center>
+                    <script>
+                        function loadDoc() {
+                            var url = "http://206.189.38.188:8080/myrs/webresources/pasien/cariPasien?nik=" + nik.value;
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.open("GET", url, true);
+                            xhttp.send();
+                            xhttp.onreadystatechange = function () {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    var objj = JSON.parse(this.responseText);
+                                    document.getElementById("nama").value = objj.nama;
+                                    document.getElementById("nik").value = objj.nik;
+                                    document.getElementById("alamat").value = objj.alamat;
+                                    document.getElementById("tanggalLahir").value = objj.tanggalLahir;
+                                    document.getElementById("kelamin").value = objj.kelamin;
+                                }
+                            };
+                        }
+                    </script>
+                </div>
+        </section> 
+        <footer>
+           
+        </footer>
+       
+    </body>
+</html>
